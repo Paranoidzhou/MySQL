@@ -1,8 +1,12 @@
-## 数据库的应用：
+课程介绍：
 
+![](01.png)
 
+## 数据库的应用场景：
 
-
+- 咨询类型网站:存新闻,存评论,存用户信息
+- 电商类:商品,订单,用户信息
+- 社交类:微博,用户信息,用户微博信息,评论信息
 
 ## IO流文件存储的弊端：
 
@@ -54,7 +58,7 @@ DataBaseManagementSystem：数据库管理系统，管理数据库文件的软�
 
   > 弊端：大牛程序员会攻击找漏洞。
 
-## 什么式数据库服务器：
+## 什么是数据库服务器：
 -  服务器：一台高配置电脑
 -  FTP服务器：安装了FTP服务软件提供了FTP服务功能的高配置电脑。
 -  邮件服务器：安装了邮件服务的软件，提供了邮件服务功能的高配置电脑。
@@ -65,7 +69,7 @@ DataBaseManagementSystem：数据库管理系统，管理数据库文件的软�
 
 - 打开终端或命令行：在终端中输入以下命令< mysql -uroot -p>然后敲回车，输入密码再回车。
 
-## 如何使用SQL：
+## 什么是SQL：
 
 Stuctured Query Language：结构化查询语言，使用SQL语言和数据库服务器进行交互，通过SQL告诉数据库服务器对数据进行什么操作。
 
@@ -92,10 +96,27 @@ Stuctured Query Language：结构化查询语言，使用SQL语言和数据库�
 ## 表相关的SQL语句：
 
 - 什么是表：表是关系型数据库存储数据的单位，数据库中存储数据需要先创建表，往表中存储数据。
+- 执行表相关的sql时一定要先选择数据库
 
 ```
+1.创建表：
+- 格式： create table 表名（字段1名 字段1类型，字段2名 字段2类型，字段n名 字段n类型）
 
+2.查看所有表：
+- 格式： show tables;
+
+3.查看指定表详情 和表的字段信息：
+- 格式： show create table 表名；
+- 格式： desc 表明；
+
+4.创建表指定引擎和字符集：
+- 格式： create table 表名（id int,age int）engine=myisam charset=gbk;
+
+5.删除表：
+- 格式： drop table 表名；
 ```
+
+- 创建表sql语句的执行过程: 在终端中写完sql语句后敲回车终端会把sql通过网络传输到DBMS(mysql),DBMS对sql语句进行解析,然后对数据库中的数据进行操作
 
 ## 表的引擎：
 
@@ -138,6 +159,20 @@ Stuctured Query Language：结构化查询语言，使用SQL语言和数据库�
 2.指定字段插入：  
 - 格式：insert into 表名 (id,name) values(2,'lisi')
 
-3.查询数据： select * from 表名；
+3.查询数据： 
+- 格式：select * from 表名；                            【查询所有】
+- 格式：select 值1(id),(name)值2 from 表名;			【查询指定】
+
+4.修改数据：
+- 格式：update 表名 set 字段名 = 值 where 字段名 = 值；
+- 实例：update tstu set name='卷帘大将',age=200 where id=5;
+
+5.删除数据：
+- 格式：delete from 表名 where 字段名=值;
+- 实例：delete from t_stu where name='八戒';
 ```
 
+## windows电脑出现命令行中无法插入中文数据的解决方案：
+
+- 在命令行中先登陆mysql、然后执行set names gbk;
+- 这样做是通知MySQL数据库服务器，客户端（命令行）的编码格式为GBK；
