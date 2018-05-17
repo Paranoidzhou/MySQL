@@ -176,3 +176,4 @@ Stuctured Query Language：结构化查询语言，使用SQL语言和数据库�
 
 - 在命令行中先登陆mysql、然后执行set names gbk;
 - 这样做是通知MySQL数据库服务器，客户端（命令行）的编码格式为GBK；
+
