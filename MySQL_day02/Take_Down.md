@@ -1,4 +1,4 @@
-## 主键约束：
+##  ## 主键约束：
 
 - 什么是约束：就是创建表的时候给表字段添加的限制条件。
 
@@ -6,22 +6,17 @@
 
 - 如何使用：
 
-  ```
-  create table 表名(id int primary key,name varchar(10));
-  ```
 
-```
+ 	create table 表名(id int primary key,name varchar(10));
+
  	 --> 以下会报错，因为Id重复了：
-
 		insert into t1 values('1','小明');
-
 		insert into t1 values('1','小红');
 
 	 --> 以下会报错，因为主键不能为Null:
+		insert into t1(name)values ('小花');
 
-		insert into t1(name)values ('小花'); 
 
-```
 
 ## 主键+自增：
 
@@ -91,10 +86,8 @@ show create table t3;
 
 - 如何开启事务：
 
-```
-create table person(id int,name varchar(10),money int);
-insert into person values(1,'超人',500),(2,'钢铁侠',1000);
-```
+		create table person(id int,name varchar(10),money int);
+		insert into person values(1,'超人',500),(2,'钢铁侠',1000);
 
 - 超人找钢铁侠借300块钱：
 
@@ -137,7 +130,7 @@ insert into person values(1,'超人',500),(2,'钢铁侠',1000);
   
   ```
 
-  - DML：   数据操作语言。
+  - DML：Data Manipulation Language 数据操作语言。
 
     -->包括：insert 、update、delete、select()
 
