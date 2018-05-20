@@ -287,7 +287,7 @@
 		select floor(3.88);           输出：3
 
 - 四舍五入： round(num,m)
-		select round(2.68);		      输出：3
+		select round(2.68);		   输出：3
 		select round(3.1415926,2);    输出：3.14（取小数点后面两位）
 
 - 非四舍五入： truncate(num,m)
