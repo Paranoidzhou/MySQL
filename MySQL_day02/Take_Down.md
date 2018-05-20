@@ -1,11 +1,12 @@
-##  ## 主键约束：
+#day2
+
+## 主键约束：
 
 - 什么是约束：就是创建表的时候给表字段添加的限制条件。
 
 - 主键约束的特点：唯一并且非空、一个表中只有一个主键。
 
 - 如何使用：
-
 
  	create table 表名(id int primary key,name varchar(10));
 
@@ -29,7 +30,7 @@
 
 ## 使用Eclipse执行SQL乱码问题：
 
-?useUnicode=true&characterEncoding=UTF-8
+  ?useUnicode=true&characterEncoding=UTF-8
 
 ## 注释：Comment
 
@@ -61,12 +62,16 @@
 
 	1. 创建商品表(item) 商品id 商品名称 商品价格 分类id 库存
 	create table item(id int primary key auto_increment,name varchar(10),price int,categoryid int,num int);
+
 	2. 创建分类表(category) 分类id 分类的名称 上级分类
 	create table category(id int primary key auto_increment,name varchar(10),parentid int);
+
 	3. 表中插入 电器分类下电视机分类下的康佳电视价格3580,库存25.
+
 	- 分类表插入以下数据
 	insert into category values(null,'电器',null);
 	insert into category values(null,'电视机',1);
+
 	- 商品表插入以下数据
 	insert into item values(null,'康佳电视',3580,2,25);
 
@@ -153,7 +158,7 @@
 
   ## 数据库类型：
 
-  ### 整型常用：int(m)  bigint(m)    其中M代表显示长度，如果字段数值长度不到M时，会在数值的前面补零，但是一定要和zerofill结合使用。
+  #### 整型常用：int(m)  bigint(m)  其中M代表显示长度，如果字段数值长度不到M时，会在数值的前面补零，但是一定要和zerofill结合使用。
 
   -->例如：  create table T_int(num int(10)zerofill);
 
@@ -167,9 +172,9 @@
 
   -->例如：  72.123        m=2 ,d=3
 
-  ### decimal(m,d)  超高精度小数，需要涉及到到高精度运算的时候，用此类型。
+  #### decimal(m,d)  超高精度小数，需要涉及到到高精度运算的时候，用此类型。
 
-  ### 字符串常用：char 、varchar 、text.
+  #### 字符串常用：char 、varchar 、text.
 
   - char (m)：其中M代表长度，长度不可变，声明多长，所占长度为多长。（执行效率高、最大值：255）
   - varchar(m)：其中M代表长度，长度可变，声明N个长度，所占长度为实际字符长度。（节省空间、最大值：65535，但是超过255建议使用text）
@@ -189,17 +194,15 @@
 
 		insert into t_date values('2018-03-22',null,null,null);
 
+  ​ mysql> select * from t_date;
   ```
-  mysql> select * from t_date;
   +------------+------+------+---------------------+
   | d1         | d2   | d3   | d4                  |
   +------------+------+------+---------------------+
   | 2018-03-22 | NULL | NULL | 2018-05-17 17:37:27 |
   +------------+------+------+---------------------+
   ```
-
   ​	insert into t_date values('2018-05-17','17:41:22','2008-08-08 18:08:18',null);
-
   ```
   +------------+----------+---------------------+---------------------+
   | d1         | d2       | d3                  | d4                  |
