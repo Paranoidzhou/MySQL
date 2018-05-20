@@ -25,6 +25,7 @@
   1. 当自增字段的值为Null时，会自动赋值并自增。
   2. 以表中会出现的最大值+1。
   3. 删除数据自增数值不减。
+  4. delete删除所有数据自增值在原来基础上继续+1。
 
 ## 使用Eclipse执行SQL乱码问题：
 
@@ -34,16 +35,10 @@
 
 - 在创建表的时候可以通过Comment对字段进行描述：
 - 如何使用：
-
-```
-create table t3(id int primary key auto_increment comment '这是主键ID' ,comm int comment '这是奖金');
-```
+		create table t3(id int primary key auto_increment comment '这是主键ID' ,comm int comment '这是奖金');
 
 - 如何查看注释：
-
-```
-show create table t3;
-```
+		show create table t3;
 
 ## ` 和 ' 的区别：
 
@@ -52,21 +47,29 @@ show create table t3;
 - （ ' ）单引号；
 
 - ( ` ) 是在创建表时，修饰表名和字段的名的，可以省略：
-
-
-  ```
-  create table `t4`(id int,`age` int);
-  ```
+  		create table `t4`(id int,`age` int);
 
 - ' 时用来表示字符串的：
-
-```
-  create table `t4`(id int,`age` int);
-```
+		create table `t4`(id int,`age` int);
 
 ## 数据冗余
 
 - 如果数据库设计不合理，保存大量数据后会出现大量的重复数据，这种现象称为数据的冗余，通过拆分表格的形式把可能大量重复的数据用单独的一张表保存，在原表中只需要通过id建立关系即可。
+
+#### 练习：
+    设计表保存一下数据：保存教学部下java教研部的老师信息，苍老师 工资200 年龄18岁，然后再保存集团总部下销售部，销售A部的员工李然老师，工资50，年龄28
+
+	1. 创建商品表(item) 商品id 商品名称 商品价格 分类id 库存
+	create table item(id int primary key auto_increment,name varchar(10),price int,categoryid int,num int);
+	2. 创建分类表(category) 分类id 分类的名称 上级分类
+	create table category(id int primary key auto_increment,name varchar(10),parentid int);
+	3. 表中插入 电器分类下电视机分类下的康佳电视价格3580,库存25.
+	- 分类表插入以下数据
+	insert into category values(null,'电器',null);
+	insert into category values(null,'电视机',1);
+	- 商品表插入以下数据
+	insert into item values(null,'康佳电视',3580,2,25);
+
 
 ## 事务
 
@@ -101,17 +104,17 @@ show create table t3;
 
 - 回滚：rollback
 
-  ​      执行rollback会回滚到上次提交的点或者关闭自动提交时的点。
+        执行rollback会回滚到上次提交的点或者关闭自动提交时的点。
 
 - 保存回滚点：savepoint s1(标识);
 
-  ​	update person set money = money-200 where id=1;
+  	update person set money = money-200 where id=1;
 
-  ​	savepoint s1;
+  	savepoint s1;
 
-  ​	update person set money = money+200 where id=1;
+  	update person set money = money+200 where id=1;
 
-  ​	rollback  to s1;
+  	rollback  to s1;
 
 ## SQL分类：
 
@@ -121,34 +124,30 @@ show create table t3;
 
   > 它们都不支持事务。
 
-  ```
-  truncate :
-  
-  -->格式： truncate table 表名；
-  
-  作用：删除表并创建一张空表，auto_increment数值清零
-  
-  ```
+		truncate :
 
-  - DML：Data Manipulation Language 数据操作语言。
+		-->格式： truncate table 表名；
+
+ > 作用：删除表并创建一张空表，auto_increment数值清零
+
+
+- DML：Data Manipulation Language 数据操作语言。
 
     -->包括：insert 、update、delete、select()
 
     > 它们都支持事务
 
-  - DQL ：Data Query Language 数据查询语言。
+- DQL ：Data Query Language 数据查询语言。
 
     -->只有：select
 
     > 它也属于DML
 
-  - TCL ：Transaction Control Language 事务控制语言
+- TCL ：Transaction Control Language 事务控制语言
 
     -->包括： commit、rollback、savepoint、rollback to
 
-    
-
-  - DCL ：Data Control Language 数据库控制语言
+- DCL ：Data Control Language 数据库控制语言
 
     -->分配用户权限的相关sql 
 
@@ -162,7 +161,7 @@ show create table t3;
 
   ​		 select * from T_int;
 
-  输出结果为：0000000015 
+  输出结果为：0000000015
 
   ### 浮点数常用： double(m,d) 其中M代表总长度，D代表小数长度。
 
@@ -177,7 +176,7 @@ show create table t3;
   - text：可变长度，最大65535
   - longtext :更大。
 
-  ## 日期类型 
+  ## 日期类型
 
   - date ：只能保存年月日;
   - time ：只能保存时分秒；
@@ -186,11 +185,9 @@ show create table t3;
 
   创建时间表：
 
-  ​         create table t_date(d1 date,d2 time,d3 datetime,d4 timestamp);
+		create table t_date(d1 date,d2 time,d3 datetime,d4 timestamp);
 
-  ​	 insert into t_date values('2018-03-22',null,null,null);
-
-  ​	
+		insert into t_date values('2018-03-22',null,null,null);
 
   ```
   mysql> select * from t_date;
@@ -210,5 +207,3 @@ show create table t3;
   | 2018-05-17 | 17:41:22 | 2008-08-08 18:08:18 | 2018-05-17 17:40:53 |
   +------------+----------+---------------------+---------------------+
   ```
-
-  
