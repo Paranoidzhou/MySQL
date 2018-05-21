@@ -1,0 +1,25 @@
+一、数据模型设计以及SQL编写，请根据一下需求写出表设计以及查询SQL。
+   需求说明：2018年狗年小薇收到了很多红包，有亲戚的红包，朋友的红包，同事的红包。红包有的是现金、或是微信红包，或是支付宝红包。为了礼尚往来小薇还发了一些红包给弟弟，妹妹，朋友，同时。请设计表帮小薇统计：
+   提示：至少包含2张表。（其中包含一张红包交易流水表，交易流水表中不能包含交易双方的姓名）
+   1.请写出表名称和包含的字段名称。
+   书写格式举例：
+   表：交易流水表 Trade  字段：交易号 TradeID  交易时间 TradeTime 交易金额 TradeAmout.......
+   SQL：
+	create table Trade(Tradeid int primary key auto_increment,TradeTime date,TradeAmout double);
+	create table Tws(Tradeid int,Trading varchar(10),Terraceid int);
+	create table Relative(Terraceid int,rtype varchar(10),sex char(5));
+
+   2.统计从2018年春节(2月15日)到现在的收益（收益=收入-支出）多少元红包？
+   SQL：
+
+
+
+
+   3.查询从2018年春节（2月15日）到现在红包大于100元的所有女性亲戚的名字和对应的红包金额？
+   SQL:
+
+
+
+
+   4.查询统计：现金、支付宝、微信三个平台分别收到的红包总金额？
+   SQL：
