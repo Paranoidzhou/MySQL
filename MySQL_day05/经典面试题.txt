@@ -5,21 +5,29 @@
    书写格式举例：
    表：交易流水表 Trade  字段：交易号 TradeID  交易时间 TradeTime 交易金额 TradeAmout.......
    SQL：
-	create table Trade(Tradeid int primary key auto_increment,TradeTime date,TradeAmout double);
-	create table Tws(Tradeid int,Trading varchar(10),Terraceid int);
-	create table Relative(Terraceid int,rtype varchar(10),sex char(5));
+	create table trade(id int primary key auto_increment,tradeTime date,tradeMoney double,type varchar(5),personid int);
+	create table person(id int primary key auto_increment,name varchar(10),gender varchar(5),rel varchar(5));
+
+---------------------------------------------------------------------------------------------------------------
+   插入数据：
+	insert into person values(null,'刘德华','男','亲戚'),(null,'刘若英','女','亲戚'),(null,'马云','男','同事'),(null,'特朗普','男','朋友'),(null,'貂蝉','女','同事');
+
+	insert into trade values(null,'2018-2-20',-20,'微信',1),(null,'2018-2-21',500,'现金',2),(null,'2018-2-21',-50,'现金',2),(null,'2018-2-23',50000,'支付宝',1),(null,'2018-2-23',-100,'支付宝',3),(null,'2018-2-20',1000,'微信',4),(null,'2018-2-25',-20000,'现金',5);
 
    2.统计从2018年春节(2月15日)到现在的收益（收益=收入-支出）多少元红包？
    SQL：
-
-
-
+	select sum(tradeMoney) from trade where tradeTime>str_to_date('2018年2月15号','%Y年%m月%d号');
 
    3.查询从2018年春节（2月15日）到现在红包大于100元的所有女性亲戚的名字和对应的红包金额？
    SQL:
-
-
-
+	select p.name,t.tradeMoney
+	from trade t join person p
+	on t.personid=p.id
+	where t.tradeMoney not between -100 and 100
+	and p.gender='女'
+	and p.rel='亲戚'
+	and t.tradeTime>str_to_date('2018年2月15号','%Y年%m月%d号');
 
    4.查询统计：现金、支付宝、微信三个平台分别收到的红包总金额？
    SQL：
+    select type，sum(money) from trade where tradeMoney>0 group by type; 
