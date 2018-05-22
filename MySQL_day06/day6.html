@@ -10,7 +10,7 @@
 </head>
 <body class="markdown metro-vibes-dark">
 <h1 id="day6"><a name="day6" href="#day6"></a>day6</h1><h2 id="视图"><a name="视图" href="#视图"></a>视图</h2><ul>
-<li>数据库中存在多种对象，表和视图都是数据库中的对象 <strong>表和视图不能重名</strong></li><li>视图是张虚拟的表，是通过sql的查询语句查询的结果集的表保存成了一个视图 </li><li>视图中的数据 会随着真实表中的数据改变而改变</li><li>视图实际上就是代表了一部分sql语句</li><li>创建视图的格式：<pre><code data-origin="<pre><code>  create view 视图名 as 子查询;
+<li>数据库中存在多种对象，表和视图都是数据库中的对象 <strong>表和视图不能重名</strong></li><li>视图是张虚拟的表，是通过sql的查询语句查询的结果的表保存成了一个视图</li><li>视图中的数据会随着原表中的数据改变而改变</li><li>视图实际上就是代表了一部分sql语句</li><li>创建视图的格式：<pre><code data-origin="<pre><code>  create view 视图名 as 子查询;
   select * from 视图名;
   -&amp;gt;例如：
   create view v_emp_10 as(select * from emp where deptno=10);
