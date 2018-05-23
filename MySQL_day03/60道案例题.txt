@@ -156,24 +156,25 @@
 	select count(*) 总人数,sum(sal) 总工资,avg(sal) 平均工资,max(comm) 最高奖金,min(comm) 最低奖金 from emp; 
 
 	53.案例：查询emp表中每个部门的编号，人数，工资总和，最后根据人数进行升序排列，如果人数一致，根据工资总和降序排列。
-	
+	select deptno,count(*) c,sum(sal) s from emp group by deptno order by c,s desc;
 
 	54.案例：查询工资在1000~3000之间的员工信息，每个部门的编号，平均工资，最低工资，最高工资，根据平均工资进行升序排列。
-
+	select *,avg(sal) a,min(sal),max(sal) from emp where sal between 1000 and 3000 group by deptno order by a;
 
 	55.案例：查询含有上级领导的员工，每个职业的人数，工资的总和，平均工资，最低工资，最后根据人数进行降序排列，如果人数一致，根据平均工资进行升序排列
-
+	select count(*) c,sum(sal),avg(sal) a,min(sal) from emp where mgr is not null group by job order by c desc,a;
 
 	56.案例：查询工资在1000~3000之间每一个员工的编号，姓名，职位，工资
-
+	select empno,ename,job,sal from emp where sal between 1000 and 3000;
 
 	57.案例：查询emp表中奖金在500~2000之间所有员工的编号，姓名，工资以及奖金
-
+	select empno,ename,sal,comm from emp where comm between 500 and 2000;
 
 	58.案例：查询员工的编号是7369，7521，	
-
+	select * from emp where empno in (7369,7521);
 
 	59.案例：查询emp表中，职位是ANALYST，
+	select * from emp where job = 'ANALYST';
 
-
-	60.案例：查询emp表中职位不是ANALYST,
+	60.案例：查询emp表中职位不是ANALYST
+	select * from emp where job!='ANALYST';
