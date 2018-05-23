@@ -1,161 +1,162 @@
     1.案例：查询没有上级领导的员工的编号，姓名，工资
-
+	select empno,ename,sal from emp where mgr is null;
     
 	2.案例：查询emp表中没有奖金的员工的姓名，职位，工资，以及奖金
-
+	select ename,job,sal,comm from emp where comm is null;
 	
 	3.案例：查询emp表中含有奖金的员工的编号，姓名，职位，以及奖金
-	
+	select empno,ename,job,comm from emp where comm>0;
 	
 	4.案例：查询含有上级领导的员工的姓名，工资以及上级领导的编号
-
+	select ename,sal,mgr from emp where mgr is not null;
 
 	5.案例：查询emp表中名字以‘S’开头的所有员工的姓名
-
+	select ename from emp where ename like 'S%';
 
 	6.案例：查询emp表中名字的最后一个字符是'S'的员工的姓名
-
+	select ename from emp where ename like '%s';
 
 	7.案例：查询倒数的第2个字符是‘E’的员工的姓名
-
+	select ename from emp where ename like '%e_';
 
 	8.案例：查询emp表中员工的倒数第3个字符是‘N’的员工姓名
-
+	select ename from emp where ename like '%n__';
 
 	9.案例：查询emp表中员工的名字中包含‘A’的员工的姓名	
-
+	select ename from emp where ename like '%a%';
 
 	10.案例：查询emp表中名字不是以'K'开头的员工的所有信息
-
+	select ename from emp where ename not like 'k%';
 
 	11.案例：查询emp表中名字中不包含‘A’的所有员工的信息
-
+	select * from emp where ename not like '%a%';
 
 	12.案例：做文员的员工人数（job_id 中 含有 CLERK 的）
-
+	select count(*) from emp where job like 'clerk';
 
 	13.案例：销售人员 job: SALESMAN 的最高薪水
-
+	select max(sal) from emp where job='salesman';
 
 	14.案例：最早和最晚入职时间
-
+	select min(hiredate) from emp;
+	select max(hiredate) from emp;
 
 	15.案例：查询类别 163的商品总库存量
-
+	select num from t_item where category_id = 163;
 
 	16.案例：查询 类别 163 的商品
-
+	select title from t_item where category_id=163;
 
 	17.案例：查询商品价格不大于100的商品名称列表
-
+	select title,price from t_item where price < 100;
 
 	18.案例：查询品牌是联想,且价格在40000以上的商品名称和价格
-
+	select title,price from t_item where price>40000 and title like '%联想%';
 
 	19.案例：查询品牌是三木,或价格在50以下的商品名称和价格
-
+	select title,price from t_item where price<50 and title like '%三木%';
 
 	20.案例：查询品牌是三木、广博、齐心的商品名称和价格
-
+	select title,price from t_item where title like '%三木%' or title like '%广博%' or title like'%齐心%';
 
 	21.案例：查询品牌不是联想、戴尔的商品名称和价格
-
+	select title,price from t_item where title not like '%联想%' and title not like '%戴尔%';
 
 	22.案例：查找品牌是联想且价格大于10000的电脑名称
-
+	select title from t_item where title like '%联想%'and price > 10000;
 
 	23.案例：查询联想或戴尔的电脑名称列表
-
+	select title from t_item where title like '%联想%' or title like '%戴尔%';
 
 	24.案例：查询联想、戴尔、三木的商品名称列表
-
+	select title from t_item where title like '%联想%' or title like '%戴尔%' or title like '%三木%';
 
 	25.案例：查询不是戴尔的电脑名称列表
-
+	select title from t_item where title not like '%戴尔%';
 
 	26.案例：查询所有是记事本的商品品牌、名称和价格
-
+	select * from t_item where item_type like '%记事本%'; 
 
 	27.案例：查询品牌是末尾字符是'力'的商品的品牌、名称和价格
-
+	select * from t_item where title like '%_力';
 
 	28.案例：名称中有联想字样的商品名称
-
+	select * from t_item where title like '%联想%';
 
 	29.案例：查询卖点含有'赠'产品名称
-
+	select * from t_item where  sell_point like '%赠%';
 
 	30.案例：查询emp表中员工的编号，姓名，职位，工资，并且工资在1000~2000之间。
-
+	select empno,ename,job,sal from emp where sal between 1000 and 2000;
 
 	31.案例：查询emp表中员工在10号部门，并且含有上级领导的员工的姓名，职位，上级领导编号以及所属部门的编号
-
+	select ename,job,empno,deptno from emp where deptno=10 and mgr is not null; 
 
 	32.案例：查询emp表中名字中包含'E'，并且职位不是MANAGER的员工的编号，姓名，职位，以及工资。	
-
+	select empno,ename,job,sal from emp where ename like '%e%' and job!='manager';
 
 	33.案例：查询emp表中10号部门或者20号部门中员工的编号，姓名，所属部门的编号
-
+	select empno,ename,deptno from emp where deptno in (10,20);
 
 	34.案例：查询emp表中没有奖金或者名字的倒数第2个字母不是T的员工的编号，姓名，职位以及奖金
-
+	select empno,ename,job,comm from emp where comm=0 or ename not like '%t_';
 
 	35.案例：查询工资高于3000或者部门编号是30的员工的姓名，职位，工资，入职时间以及所属部门的编号	
-
+	select ename,job,sal,hiredate,deptno from emp where sal > 3000 or deptno = 30;
 
 	36.案例：查询不是30号部门的员工的所有信息
-
+	select * from emp where deptno!=30;
 
 	37.案例：查询奖金不为空的员工的所有信息
-
+	select * from emp where comm!=0;
 
 	38.案例：查询emp表中所有员工的编号，姓名，职位，根据员工的编号进行降序排列
-
+	select empno,ename,job from emp order by empno desc;
 
 	39.案例：查询emp表中部门编号是10号或者30号中，所有员工姓名，职务，工资，根据工资进行升序排列
-
+	select ename,job,sal,deptno from emp where deptno in(10,30) order by sal;
 
 	40.案例：查询emp表中所有的数据，然后根据部门的编号进行升序排列，如果部门编号一致，根据员工的编号进行降序排列
-
+	select * from emp order by deptno,empno desc;
 
 	41.案例：查询emp表中工资高于1000或者没有上级领导的员工的编号，姓名，工资，所属部门的编号，以及上级领导的编号，根据部门编号进行降序排列，如果部门编号一致根据工资进行升序排列。
-
+	select empno,ename,sal,deptno,mgr from emp where sal>1000 or mgr is null order by deptno desc,sal;
 
 	42.案例：查询emp表中名字中不包含S的员工的编号，姓名，工资，奖金，根据工资进行升序排列，如果工资一致，根据编号进行降序排列
-
+	select empno,ename,sal,comm from emp order by sal,deptno desc;
 
 	43.案例：统计emp表中员工的总数量
-
+	select count(*) from emp;
 
 	44.案例：统计emp表中获得奖金的员工的数量
-
+	select count(*) from emp where comm>0;
 
 	45.案例：求出emp表中所有的工资累加之和
-
+	select sum(sal) from emp;
 
 	46.案例：求出emp表中所有的奖金累加之和
-
+	select sum(comm) from emp;
 
 	47.案例：求出emp表中员工的平均工资
-
+	select avg(sal) from emp;
 
 	48.案例：求出emp表中员工的平均奖金
-
+	select avg(comm) from emp;
 
 	49.案例：求出emp表中员工的最高工资
-
+	select max(sal) from emp;
 
 	50.案例：求出emp表中员工编号的最大值
-
+	select max(empno) from emp;
 
 	51.案例：查询emp表中员工的最低工资。
-
+	select min(sal) from emp;
 
 	52.案例：查询emp表中员工的人数，工资的总和，平均工资，奖金的最大值，奖金的最小值,并且对返回的列起别名。
-
+	select count(*) 总人数,sum(sal) 总工资,avg(sal) 平均工资,max(comm) 最高奖金,min(comm) 最低奖金 from emp; 
 
 	53.案例：查询emp表中每个部门的编号，人数，工资总和，最后根据人数进行升序排列，如果人数一致，根据工资总和降序排列。
-
+	
 
 	54.案例：查询工资在1000~3000之间的员工信息，每个部门的编号，平均工资，最低工资，最高工资，根据平均工资进行升序排列。
 
