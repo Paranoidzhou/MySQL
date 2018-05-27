@@ -1,0 +1,285 @@
+SELECT SYSDATE FROM dual;     -- 光标选中行 ctrl+回车,可执行当前行
+--CREATE(创建)
+CREATE TABLE employee( 
+   id NUMBER(4),        --NUMBER(4): 表示了最大长度4位数  例如:最大9999
+   name VARCHAR2(20),   --VARCHAR2 : 变长字符串,最大长度为4000字节,节省空间,即使开很大空间,实际是用多少,占多少.
+   gender CHAR(1),		--java中为字符类型,数据库中为定长字符串,最大2000字节.定太大了浪费空间,开多少占多少,少了会自动补空格
+   birth DATE,			--DATA :　长度为7个字节,世纪 年 月 日 时 分 秒,只能精确到秒,默认显示"日-月-年"
+   salary NUMBER(6,2),  --NUMBER(6,2) : 表示整数和小数,最大长度为6位,其中小数位占2位  例如:最大9999.99
+   job VARCHAR2(30),
+   deptno NUMBER(2)
+);
+
+
+
+
+/*-----------------------------表相关操作---------------------------*/
+--修改(ALTER),(RENAME)
+--修改表名:
+RENAME employee TO myemployee;
+--删除表:
+DROP TABLE myemployee;
+--查看表结构:
+DESC myemployee;
+--修改表结构:
+ALTER TABLE myemployee ADD(hirdeate DATE);   --添加新字段,只能被追加到表最后列
+--删除表字段:
+ALTER TABLE myemployee DROP(hirdate); 
+--修改表字段:(表中有数据尽可能不要修改字段类型,长度尽可能只增不减)
+ALTER TABLE myemployee MODIFY(name VARCHAR2(40)); --意思为name长度由原来的长度变更为新指定的40长度
+
+
+/*
+	字段约束类型
+	DEFAULT:增加默认值
+	NOT NULL:该字段不允许为空(数据库中所有字段类型,默认值都是NULL);
+*/
+CREATE TABLE employee( 
+   id NUMBER(4),        
+   name VARCHAR2(20) NOT NULL,   --该姓名字段不允许为空  
+   gender CHAR(1) DEFAULT 'M',	 --增加性别字段默认值为男
+   birth DATE,			
+   salary NUMBER(6,2),  
+   job VARCHAR2(30),
+   deptno NUMBER(2)
+);
+
+
+/*-----------------------------数据相关操作---------------------------*/
+--插入(INSERT)
+INSERT TINO employee(id,name,gender,salary,job) values(1001,'张三','W',4399,'演员');
+INSERT TINO employee(id,name,job) values(1002,'李四','龙套');
+INSERT TINO employee(id,name,brith) values(1003,'王五',TO_DATE('1992-08-08','YYYY-MM-DD'));--指定字段指定日期 
+--查询数据(SELECT)
+SELECT * FROM employee;
+--修改数据(UPDATE)
+UPDATE employee SET salary=5000; --修改所有该字段下的值
+UPDATE employee SET salary=8000 WHERE id=1001; --修改指定字段的值
+--删除(DELETE),(TRUNCATE)
+--删除表中数据(DELETE)
+DELETE FROM employee; --删除表中全部数据
+COMMIT; --提交
+ROLLBACK; --回退
+--删除表中数据(TRUNCATE),由该关键字删除的表数据,是不能回滚的.
+
+--查询数据(SELECT)
+SELECT CONCAT(ename,salary) FROM employee;
+SELECT CONCAT(CONCAT(enmae,':'),salary) FROM employee;
+SELECT ename||':'||salary FROM employee;  --'||'也可以用来连接字符串
+--LENGTH(c):查看指定字符串长度
+SELECT LENGTH(ename) FROM employee;
+--UPPER(全大写),LOWER(全小写),INITCAP(首字母大写)
+SELECT UPPER('hellowrod'),LOWER('I LOVE YOU'),INITCAP('my name is lisi')FROM dual;  --dual代表伪表,只是展示可看类似视图,不是一张真是存在的表
+
+/* 去除字符串两端重复字符:TRIM(两边都去除),LTRIM(左去除),RTRIM(右去除)*/
+SELECT TRIM('e' FROM 'eeeeeeelisteeeee')FROM dual;
+SELECT LTRIM('eeeeeeelisteeeee','e')FROM dual;
+SELECT RTRIM('eeeeeeelisteeeee','e')FROM dual;
+
+/* 
+	补位函数:
+	LPAD(左补位),RPAD(右补位)
+	LPAD(c1,n,c2)  :c1表示需要补位的字符串,n表示要显示的长度,
+					c2表示要补的字符,长度不足则补c2,多则从左往右截取.
+	左补位是从左往右补位,右补位是从右王座
+	
+*/
+SELECT ename,LPAD(salary,8,'$')FROM employee;
+
+/*
+	截取字符串:
+	SUBSTR(c,n,m) : c表示要截取的字符串,n表示为截取的其实位置,m为截取多少
+					n若是为负数则从倒数位置开始截取,数据库中下标都是从1开始的,含头不含尾
+*/
+SELECT SUBSTR('thinking in java',10,4) FROM dual;
+
+/*
+	INSTR(c1,c2[,n[m]]) : 查找c2在c1中的位置,n表示从第几个字符开始检索,m表示第几次出现,不写则默认为1
+*/
+SELECT INSTR('thinking in java','in',3,2)FROM dual;
+
+/*
+	空值函数:
+	ROUND(n,m) : 截取字符串,n表示需要四舍五入的数,m表示保留到小数点后几位.四舍五入
+*/
+SELECT ROUND(45.678,2)FROM dual;
+--TRUNC(n,m) :参数意义与ROUND相同,区别是截取的字符串不做四舍五入.
+SELECT TRUNC(45.678,2)FROM dual;
+
+/*
+	CELL(向上取整),FLOOR(向下取整)
+*/
+SELECT CELL(45.678)FROM dual; --小数位如果有值则进一.
+SELECT FLOOR(45.678)FROM dual;--小数位不管有没有值,都舍掉.
+
+/*
+	日期相关关键字:oracle内部事件函数,精确到秒
+	SYSDATE :当前系统时间，返回DATE类型摩尔恩显示为日月年格式
+	SYSTIMESTAMP :当前系统时间,返回时间戳类型;
+*/
+SELECT SYSDATE FROM dual;
+SELECT SYSTIMESTAMP FROM dual;
+
+/*
+	日期转换函数:
+	TO_DATE() :将字符串按照指定日期格式转换为DATE类型数据
+*/
+SELECT TO_DATE('2008-08-08 08:08:08','YYYY-MM-DD HH24:MI:SS')FROM dual;
+
+--DATE类型数据可以进行计算,两个DATE类型相减,差等于相差的天数,加减数字等于加减天数
+--例如查看明天是哪天:
+SELECT SYSDATE+1 FROM dual;
+--查看每个员工入职到尽头一共多少天
+SELECT ename,SYSDATE-hiredate FROM employee;
+
+/*
+	TO_CHAR():将日期转换为字符串
+*/
+--按照自己定义的格式查看当前系统时间
+SELECT TO_CHAR('SYSDATE','YYYY-MM-DD HH24:MI:SS') FROM dual;
+
+/*
+	日期格式中RR,YY的区别
+	RR,YY都是用两位数字表示年
+	使用TO_DATE()函数时,对世纪处理方式不同
+	YY是根据当前系统所在时间进行解释世纪的
+	RR是根据具体情况判定
+*/
+SELECT TO_CHAR(TO_DATE('99-09-09','YY-MM-DD'),'YYYY-MM-DD')FROM dual;
+SELECT TO_CHAR(TO_DATE('99-09-09','RR-MM-DD'),'YYYY-MM-DD')FROM dual;
+
+/*
+	日期常用函数:
+	LAST_DAY(date):返回给定日期所在月的月底
+*/
+SELECT LAST_DAY(SYSDATE)FROM dual;
+--ADD_MONTHS(date,i) :对给定日期加指定月,i为加几个月,若为负数则减
+SELECT ADD_MONTHS(SYSDATE,2)FROM dual;
+--MONTHS_BETWEEN(date1,date2) :计算两个日期之间相差的月
+--例如查看每个员工入职到今天共多少个月
+SELECT ename,MONTHS_BETWEEN(SYSDATE,hirdate) FROM employee;	
+--NEXT_DAY(date,i) :返回跟定日期第二天开始一周之内的指定周几日期
+
+/*
+	GREATEST:最大值
+	LEAST:最小值
+*/
+SELECT LEAST(SYSDATE,TO_DATE('2008-08-08','YYYY-MM-DD'))FROM dual;   --查看给定日期的最小值
+
+/*
+	EXTRACT :提取指定日期时间分量的值
+*/
+SELECT EXTRACT(YEAR FROM SYSDATE)FROM dual;--查看今天所在日期对应的年
+
+
+CREATE TABLE student(
+	id NUMBER(4),
+	name VARCHAR2(20),
+	gender CHAR(1)
+);
+INSERT INTO student VALUES(1001,'唐僧','M');
+INSERT INTO student VALUES(1002,'悟空',null); --显示插入NULL值
+INSERT INTO student (ID,NAME)VALUES(1003,'八戒'); --隐示插入NULL值
+
+--更新成为NULL值
+UPDATE student SET gender=NULL WHERE id=1001;
+
+/*
+	过滤条件判断NULL值
+	判断NULL要使用IS NULL或IS NOT NULL;
+	NULL与数字运算结果还是NULL
+*/
+SELECT ename,||NULL FROM emp;
+SELECT ename,sal+comm FROM employee;
+
+/*
+	空值函数:
+	NVL(a1,a2) :a1为NULL时,返回a2的值,a1不为NULL时没返回a1本身,意义在于将NULL值替换为非NULL值.
+*/
+--查看每个员工的工资(底薪+绩效)
+SELECT ename,sal,comm,sla+NVL(comm,0) FROM employee;
+--NVL2(a1,a2,a3) :a1为NULL时,返回a3的值,a1不为NULL时,返回a2.
+
+/*
+	给字段起别名:给字段或者表达式换成一个新的名字(读起来显示方便)
+*/
+SELECT ename AS name FROM employee;
+SELECT ename name FROM employee;
+SELECT ename name,salary+comm 'sal' FROM employee;
+
+/*
+	查询使用: >,<,<=,>=,!=,<>,=
+	连接多个条件使用AND或OR,AND的优先级高于OR 
+*/
+/*
+  IN(list),NOT IN(list):判断在表中或不在表中(通常用在子查询中)
+*/
+--查看职位是'SALESMAN','CLERK'的员工信息
+SELECT ename,sal,job FROM emp_l WHERE job IN('SALESMAN','CLERK');
+--查看不在10号,20号部门的员工信息
+SELECT ename,sal,deptno FROM emp_l WHERE deptno NOT IN(10,20);
+/*
+  LIKE(模糊查询)
+  BETWEEN...AND...(在...之间)
+  DISTINCT(去重)
+  ORDER BY(排序):DESC(降序),ASC(升序)
+  聚合函数(多行函数):MAX,MIN,AVG,SUM,COUNT(*)
+  GROUP BY(分组)
+  HAVING(过滤)
+*/
+
+--查看名字中第二个字母为'L',最后一个字母为'N'的员工信息
+SELECT ename,sal FROM emp_l WHERE ename LIKE '_L%N';
+--查询工资在1500-3000之间的员工
+SELECT ename,sal FROM emp_l WHERE sal BETWEEN 1500 AND 3000;
+--去除表中重复的部门号
+SELECT DISTINCT deptno FROM emp_l;
+--查询20号部门员工信息工资按照降序排列
+SELECT * FROM emp_l WHERE deptno=20 ORDER BY sal DESC;
+--查看公司的员工数
+SELECT COUNT(*) FROM emp_l;
+--查看同部门同职位的员工各多少人
+SELECT deptno,job,COUNT(*) FROM emp_l GROUP BY deptno,job;
+--查看平均工资高于2000的那些部门的最高工资是多少
+SELECT deptno,MAX(sal) FROM emp_l GROUP BY deptno HAVING AVG(sal)>2000;
+/*
+  关联查询:多张表联合查询记录(结果集中的字段可能来自于多张表)
+  关键点在于连接条件,数据库是根据这些连接条件找到表之间的对应关系,
+  从而从这些字段中获取要查询的字段来构成结果集中的各个字段
+*/
+--表添加别名,通过别名.字段名的形式标注,可以降低编写SQL语句的复杂度,增加可读性
+--查看每个员工的名字以及所在部门的名字
+SELECT e.ename,e.deptno,d.dname 
+FROM emp_l e,dept_l d 
+WHERE e.deptno=d.deptno;
+--查看部门号一样并且在纽约的员工
+SELECT e.ename,e.deptno,d.loc 
+FROM emp_l e,dept_l d 
+WHERE e.deptno=d.deptno 
+AND d.loc='NEW YORK';
+/* 迪尔卡积:不指定关联条件会产生笛卡尔积,一个无意义的结果集*/
+/*
+	内连接:JOIN...ON...不满足连接条件的记录不会被查询出来
+*/
+--查询在纽约工作部门号一样的员工姓名
+SELECT e.ename,e.deptno,d.loc 
+FROM emp_l e JOIN dept_l d 
+ON e.deptno=d.deptno 
+AND d.loc='NEW YORK';
+
+
+/*
+	外连接:除了可以将满足连接条件的记录查询出来之外,还可以将不满足条件的记录查询出来.
+	外连接有三种:左外连接,右外连接,全外链接
+	左外连接:以JOIN左侧表作为驱动表,该表中的所有记录都会查询出来,
+	当某条记录不满足连接条件时,结果集中来自JOIN右侧表字段的全部为NULL
+*/
+--查询员工表与部门表部门号一样的员工
+SELECT e.ename,e.deptno,d.dname,d.deptno 
+FROM emp_l e 
+LEFT OUTER JOIN dept_l d 
+ON e.deptno=d.deptno;
+SELECT e.ename,e.deptno,d.dname,d.deptno 
+FROM emp_l e 
+RIGHT OUTER JOIN dept_l d 
+ON e.deptno=d.deptno;
