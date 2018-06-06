@@ -283,3 +283,18 @@ SELECT e.ename,e.deptno,d.dname,d.deptno
 FROM emp_l e 
 RIGHT OUTER JOIN dept_l d 
 ON e.deptno=d.deptno;
+
+
+2018年6月5日 笔记:
+
+/*
+	DECODE:(expr,searoh1,result1,[searoh2,result2.....][,default]): 比较参数,返回对应的结果.
+	expr: 需要比较的参数
+	search1:
+	
+*/
+
+--给各个符合相应职位的涨工资
+SELECT ename,salary,job,
+DECODE(JOB,'SALESMAN',sal*1.5,'CLERK',sal*2,'MANAGER',sal*2.5,sal) 
+FROM emp_l;
