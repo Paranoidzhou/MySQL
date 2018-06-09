@@ -42,13 +42,13 @@
 <li>打开终端或命令行：在终端中输入以下命令&lt; mysql -uroot -p&gt;然后敲回车，输入密码再回车。</li></ul><h2 id="什么是sql："><a name="什么是sql：" href="#什么是sql："></a>什么是SQL：</h2><p>Stuctured Query Language：结构化查询语言，使用SQL语言和数据库服务器进行交互，通过SQL告诉数据库服务器对数据进行什么操作。</p><h2 id="sql语句规范："><a name="sql语句规范：" href="#sql语句规范："></a>SQL语句规范：</h2><ul>
 <li>以 ;(分号) 结尾。</li><li>关键之间有空格，通常只有一个，但多个也可以。</li><li>可以存在换行。</li><li>数据库名称和表名称区分大小写。</li></ul><h2 id="sql数据库相关的sql："><a name="sql数据库相关的sql：" href="#sql数据库相关的sql："></a>SQL数据库相关的SQL：</h2><ul>
 <li>每一个工程对应一个数据库，存储数据需要先创建一个数据库，然后在数据库中创建表。</li></ul><pre><code data-origin="<pre><code>1.查看数据库：  show databases;
-2.创建数据库：  create database 数据库名称; 
+2.创建数据库：  create database 数据库名称;
 3.查看指定数据库详情： show create database 数据库名称;
 4.指定字符集： create database 数据库名称 set 字符集(gbk)；
 5.删除数据库：drop database 数据库名称；
 6.选中(使用)数据库：use 数据库名称；
 </code></pre>">1.查看数据库：  show databases;
-2.创建数据库：  create database 数据库名称; 
+2.创建数据库：  create database 数据库名称;
 3.查看指定数据库详情： show create database 数据库名称;
 4.指定字符集： create database 数据库名称 set 字符集(gbk)；
 5.删除数据库：drop database 数据库名称；
@@ -62,7 +62,7 @@
 
 3.查看指定表详情 和表的字段信息：
 - 格式： show create table 表名；
-- 格式： desc 表明；
+- 格式： desc 表名；
 
 4.创建表指定引擎和字符集：
 - 格式： create table 表名（id int,age int）engine=myisam charset=gbk;
@@ -77,7 +77,7 @@
 
 3.查看指定表详情 和表的字段信息：
 - 格式： show create table 表名；
-- 格式： desc 表明；
+- 格式： desc 表名；
 
 4.创建表指定引擎和字符集：
 - 格式： create table 表名（id int,age int）engine=myisam charset=gbk;
