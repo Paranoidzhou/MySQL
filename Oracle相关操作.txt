@@ -1,280 +1,279 @@
-SELECT SYSDATE FROM dual;     -- å…‰æ ‡é€‰ä¸­è¡Œ ctrl+å›žè½¦,å¯æ‰§è¡Œå½“å‰è¡Œ
---CREATE(åˆ›å»º)
+--DB:Êý¾Ý¿â   DBMS:Êý¾Ý¿â¹ÜÀíÏµÍ³
+--SQL:Êý¾Ý¿âÓïÑÔ 
+--SQLÓï¾ä²»Çø·Ö´óÐ¡Ð´,ÎªÁËÑø³ÉÏ°¹ß¾¡Á¿¹Ø¼ü×Ö´óÐ´
+--DDL,DML,TCL,DQL,DCL
+--DDL:Êý¾Ý¶¨ÒåÓïÑÔ   create,drop,alter,truncate
+SELECT SYSDATE FROM dual;     -- ¹â±êÑ¡ÖÐÐÐ ctrl+»Ø³µ,¿ÉÖ´ÐÐµ±Ç°ÐÐ
+--CREATE(´´½¨)
 CREATE TABLE employee( 
-   id NUMBER(4),        --NUMBER(4): è¡¨ç¤ºäº†æœ€å¤§é•¿åº¦4ä½æ•°  ä¾‹å¦‚:æœ€å¤§9999
-   name VARCHAR2(20),   --VARCHAR2 : å˜é•¿å­—ç¬¦ä¸²,æœ€å¤§é•¿åº¦ä¸º4000å­—èŠ‚,èŠ‚çœç©ºé—´,å³ä½¿å¼€å¾ˆå¤§ç©ºé—´,å®žé™…æ˜¯ç”¨å¤šå°‘,å å¤šå°‘.
-   gender CHAR(1),		--javaä¸­ä¸ºå­—ç¬¦ç±»åž‹,æ•°æ®åº“ä¸­ä¸ºå®šé•¿å­—ç¬¦ä¸²,æœ€å¤§2000å­—èŠ‚.å®šå¤ªå¤§äº†æµªè´¹ç©ºé—´,å¼€å¤šå°‘å å¤šå°‘,å°‘äº†ä¼šè‡ªåŠ¨è¡¥ç©ºæ ¼
-   birth DATE,			--DATA :ã€€é•¿åº¦ä¸º7ä¸ªå­—èŠ‚,ä¸–çºª å¹´ æœˆ æ—¥ æ—¶ åˆ† ç§’,åªèƒ½ç²¾ç¡®åˆ°ç§’,é»˜è®¤æ˜¾ç¤º"æ—¥-æœˆ-å¹´"
-   salary NUMBER(6,2),  --NUMBER(6,2) : è¡¨ç¤ºæ•´æ•°å’Œå°æ•°,æœ€å¤§é•¿åº¦ä¸º6ä½,å…¶ä¸­å°æ•°ä½å 2ä½  ä¾‹å¦‚:æœ€å¤§9999.99
+   id NUMBER(4),        --NUMBER(4): ±íÊ¾ÁË×î´ó³¤¶È4Î»Êý  ÀýÈç:×î´ó9999
+   name VARCHAR2(20),   --VARCHAR2 : ±ä³¤×Ö·û´®,×î´ó³¤¶ÈÎª4000×Ö½Ú,½ÚÊ¡¿Õ¼ä,¼´Ê¹¿ªºÜ´ó¿Õ¼ä,Êµ¼ÊÊÇÓÃ¶àÉÙ,Õ¼¶àÉÙ.
+   gender CHAR(1),		--javaÖÐÎª×Ö·ûÀàÐÍ,Êý¾Ý¿âÖÐÎª¶¨³¤×Ö·û´®,×î´ó2000×Ö½Ú.¶¨Ì«´óÁËÀË·Ñ¿Õ¼ä,¿ª¶àÉÙÕ¼¶àÉÙ,ÉÙÁË»á×Ô¶¯²¹¿Õ¸ñ
+   birth DATE,			--DATA :¡¡³¤¶ÈÎª7¸ö×Ö½Ú,ÊÀ¼Í Äê ÔÂ ÈÕ Ê± ·Ö Ãë,Ö»ÄÜ¾«È·µ½Ãë,Ä¬ÈÏÏÔÊ¾"ÈÕ-ÔÂ-Äê"
+   salary NUMBER(6,2),  --NUMBER(6,2) : ±íÊ¾ÕûÊýºÍÐ¡Êý,×î´ó³¤¶ÈÎª6Î»,ÆäÖÐÐ¡ÊýÎ»Õ¼2Î»  ÀýÈç:×î´ó9999.99
    job VARCHAR2(30),
    deptno NUMBER(2)
 );
 
 
-
-
-/*-----------------------------è¡¨ç›¸å…³æ“ä½œ---------------------------*/
---ä¿®æ”¹(ALTER),(RENAME)
---ä¿®æ”¹è¡¨å:
-RENAME employee TO myemployee;
---åˆ é™¤è¡¨:
-DROP TABLE myemployee;
---æŸ¥çœ‹è¡¨ç»“æž„:
-DESC myemployee;
---ä¿®æ”¹è¡¨ç»“æž„:
-ALTER TABLE myemployee ADD(hirdeate DATE);   --æ·»åŠ æ–°å­—æ®µ,åªèƒ½è¢«è¿½åŠ åˆ°è¡¨æœ€åŽåˆ—
---åˆ é™¤è¡¨å­—æ®µ:
-ALTER TABLE myemployee DROP(hirdate); 
---ä¿®æ”¹è¡¨å­—æ®µ:(è¡¨ä¸­æœ‰æ•°æ®å°½å¯èƒ½ä¸è¦ä¿®æ”¹å­—æ®µç±»åž‹,é•¿åº¦å°½å¯èƒ½åªå¢žä¸å‡)
-ALTER TABLE myemployee MODIFY(name VARCHAR2(40)); --æ„æ€ä¸ºnameé•¿åº¦ç”±åŽŸæ¥çš„é•¿åº¦å˜æ›´ä¸ºæ–°æŒ‡å®šçš„40é•¿åº¦
-
-
+--ÐÞ¸Ä(ALTER),(RENAME)
+--ÐÞ¸Ä±íÃû
+drop table employee;
+RENAME employee TO myemp;
+--ÐÞ¸Ä±í½á¹¹
+ALTER TABLE myemp ADD(hiredate DATE);--Ìí¼ÓÐÂ×Ö¶Î,Ö»ÄÜ±»×·¼Óµ½±í×îºóÁÐ
+ALTER TABLE myemp DROP(hiredate);--É¾³ý×Ö¶Î
+ALTER TABLE myemp MODIFY(name VARCHAR2(40));--ÐÞ¸Ä×Ö¶Î,±íÖÐÓÐÊý¾Ý²»ÒªÐÞ¸Ä×Ö¶ÎÀàÐÍ,³¤¶È¾¡¿ÉÄÜÖ»Ôö²»¼õ
+--É¾³ý(DROP)
+DROP TABLE myemp;
 /*
-	å­—æ®µçº¦æŸç±»åž‹
-	DEFAULT:å¢žåŠ é»˜è®¤å€¼
-	NOT NULL:è¯¥å­—æ®µä¸å…è®¸ä¸ºç©º(æ•°æ®åº“ä¸­æ‰€æœ‰å­—æ®µç±»åž‹,é»˜è®¤å€¼éƒ½æ˜¯NULL);
+  ×Ö¶ÎÔ¼ÊøÀàÐÍ
+  DEFAULT:Ôö¼ÓÄ¬ÈÏÖµ
+  NOT NULL:×Ö¶Î²»ÔÊÐíÎª¿Õ(Êý¾Ý¿âÖÐËùÓÐ×Ö¶ÎÀàÐÍ,Ä¬ÈÏÖµ¶¼ÊÇNULL)
 */
 CREATE TABLE employee( 
-   id NUMBER(4),        
-   name VARCHAR2(20) NOT NULL,   --è¯¥å§“åå­—æ®µä¸å…è®¸ä¸ºç©º  
-   gender CHAR(1) DEFAULT 'M',	 --å¢žåŠ æ€§åˆ«å­—æ®µé»˜è®¤å€¼ä¸ºç”·
-   birth DATE,			
-   salary NUMBER(6,2),  
-   job VARCHAR2(30),
-   deptno NUMBER(2)
+  id NUMBER(4),
+  name VARCHAR2(20) NOT NULL,--ÐÕÃû×Ö¶Î²»ÔÊÐíÎª¿Õ
+  gender CHAR(1) DEFAULT 'M',--Ôö¼ÓÐÔ±ð×Ö¶ÎÄ¬ÈÏÖµÎªÄÐ
+  birth DATE,
+  salary NUMBER(6,2),
+  job VARCHAR2(30),
+  deptno NUMBER(2)
 );
-
-
-/*-----------------------------æ•°æ®ç›¸å…³æ“ä½œ---------------------------*/
---æ’å…¥(INSERT)
-INSERT TINO employee(id,name,gender,salary,job) values(1001,'å¼ ä¸‰','W',4399,'æ¼”å‘˜');
-INSERT TINO employee(id,name,job) values(1002,'æŽå››','é¾™å¥—');
-INSERT TINO employee(id,name,brith) values(1003,'çŽ‹äº”',TO_DATE('1992-08-08','YYYY-MM-DD'));--æŒ‡å®šå­—æ®µæŒ‡å®šæ—¥æœŸ 
---æŸ¥è¯¢æ•°æ®(SELECT)
-SELECT * FROM employee;
---ä¿®æ”¹æ•°æ®(UPDATE)
-UPDATE employee SET salary=5000; --ä¿®æ”¹æ‰€æœ‰è¯¥å­—æ®µä¸‹çš„å€¼
-UPDATE employee SET salary=8000 WHERE id=1001; --ä¿®æ”¹æŒ‡å®šå­—æ®µçš„å€¼
---åˆ é™¤(DELETE),(TRUNCATE)
---åˆ é™¤è¡¨ä¸­æ•°æ®(DELETE)
-DELETE FROM employee; --åˆ é™¤è¡¨ä¸­å…¨éƒ¨æ•°æ®
-COMMIT; --æäº¤
-ROLLBACK; --å›žé€€
---åˆ é™¤è¡¨ä¸­æ•°æ®(TRUNCATE),ç”±è¯¥å…³é”®å­—åˆ é™¤çš„è¡¨æ•°æ®,æ˜¯ä¸èƒ½å›žæ»šçš„.
-
---æŸ¥è¯¢æ•°æ®(SELECT)
-SELECT CONCAT(ename,salary) FROM employee;
-SELECT CONCAT(CONCAT(enmae,':'),salary) FROM employee;
-SELECT ename||':'||salary FROM employee;  --'||'ä¹Ÿå¯ä»¥ç”¨æ¥è¿žæŽ¥å­—ç¬¦ä¸²
---LENGTH(c):æŸ¥çœ‹æŒ‡å®šå­—ç¬¦ä¸²é•¿åº¦
-SELECT LENGTH(ename) FROM employee;
---UPPER(å…¨å¤§å†™),LOWER(å…¨å°å†™),INITCAP(é¦–å­—æ¯å¤§å†™)
-SELECT UPPER('hellowrod'),LOWER('I LOVE YOU'),INITCAP('my name is lisi')FROM dual;  --dualä»£è¡¨ä¼ªè¡¨,åªæ˜¯å±•ç¤ºå¯çœ‹ç±»ä¼¼è§†å›¾,ä¸æ˜¯ä¸€å¼ çœŸæ˜¯å­˜åœ¨çš„è¡¨
-
-/* åŽ»é™¤å­—ç¬¦ä¸²ä¸¤ç«¯é‡å¤å­—ç¬¦:TRIM(ä¸¤è¾¹éƒ½åŽ»é™¤),LTRIM(å·¦åŽ»é™¤),RTRIM(å³åŽ»é™¤)*/
-SELECT TRIM('e' FROM 'eeeeeeelisteeeee')FROM dual;
-SELECT LTRIM('eeeeeeelisteeeee','e')FROM dual;
-SELECT RTRIM('eeeeeeelisteeeee','e')FROM dual;
-
-/* 
-	è¡¥ä½å‡½æ•°:
-	LPAD(å·¦è¡¥ä½),RPAD(å³è¡¥ä½)
-	LPAD(c1,n,c2)  :c1è¡¨ç¤ºéœ€è¦è¡¥ä½çš„å­—ç¬¦ä¸²,nè¡¨ç¤ºè¦æ˜¾ç¤ºçš„é•¿åº¦,
-					c2è¡¨ç¤ºè¦è¡¥çš„å­—ç¬¦,é•¿åº¦ä¸è¶³åˆ™è¡¥c2,å¤šåˆ™ä»Žå·¦å¾€å³æˆªå–.
-	å·¦è¡¥ä½æ˜¯ä»Žå·¦å¾€å³è¡¥ä½,å³è¡¥ä½æ˜¯ä»Žå³çŽ‹åº§
-	
-*/
-SELECT ename,LPAD(salary,8,'$')FROM employee;
-
+--DML:Êý¾Ý²Ù×÷ÓïÑÔ   insert,update,delete,select
+--²åÈë(INSERT)
+INSERT INTO employee(id,name,job) 
+VALUES (1002,'ÀîËÄ','ÑÝÔ±');--Ö¸¶¨×Ö¶Î²åÈë
+INSERT INTO employee(id,name,birth) 
+VALUES (1003,'ÍõÎå',TO_DATE('1992-08-08','YYYY-MM-DD'));--Ö¸¶¨×Ö¶ÎÖ¸¶¨ÈÕÆÚ
+--ÐÞ¸Ä(UPDATE)
+UPDATE employee SET salary=5000;--ÐÞ¸ÄËùÓÐ
+UPDATE employee SET salary=8000 WHERE id=1001;--ÐÞ¸ÄÖ¸¶¨×Ö¶Î
+select * from employee;
+--É¾³ý(DELETE),(TRUNCATE)
+DELETE FROM employee;--É¾³ý±íÖÐÈ«²¿Êý¾Ý
+TRUNCATE TABLE employee;--É¾³ý±íÖÐÈ«²¿Êý¾Ý²»¿É»ØÍË
+commit;
+rollback;
+--TCL:ÊÂÎñ¿ØÖÆÓïÑÔ   COMMIT,ROLLBACK
+--DQL:Êý¾Ý²éÑ¯ÓïÑÔ   SELECT
+SELECT * FROM emp;
 /*
-	æˆªå–å­—ç¬¦ä¸²:
-	SUBSTR(c,n,m) : cè¡¨ç¤ºè¦æˆªå–çš„å­—ç¬¦ä¸²,nè¡¨ç¤ºä¸ºæˆªå–çš„å…¶å®žä½ç½®,mä¸ºæˆªå–å¤šå°‘
-					nè‹¥æ˜¯ä¸ºè´Ÿæ•°åˆ™ä»Žå€’æ•°ä½ç½®å¼€å§‹æˆªå–,æ•°æ®åº“ä¸­ä¸‹æ ‡éƒ½æ˜¯ä»Ž1å¼€å§‹çš„,å«å¤´ä¸å«å°¾
+  ×Ö·û´®º¯Êý:
+  CONCAT(c1,c2):Á¬½Óc1,c2
+*/
+SELECT CONCAT(ename,sal) FROM emp_l;
+SELECT CONCAT(CONCAT(ename,':'),sal) FROM emp_l;
+SELECT ename||':'||sal FROM emp_l;--"||"Ò²¿ÉÒÔÓÃÀ´Á¬½Ó×Ö·û´®
+/*
+  LENGTH(c):²é¿´Ö¸¶¨×Ö·û´®³¤¶È
+*/
+SELECT LENGTH(ename) FROM emp_l;--²é¿´Ô±¹¤ÐÕÃûµÄ³¤¶È
+/*
+  UPPER(È«´óÐ´),LOWER(È«Ð¡Ð´),INITCAP(Ê××ÖÄ¸´óÐ´)
+*/
+SELECT UPPER('helloword'),LOWER('HELLOWORD'),INITCAP('HELLOWORD') 
+FROM dual;--dualÎ±±í,²»ÊÇÒ»ÕÅÕæÊµ´æÔÚµÄ±í
+/*
+  È¥³ý×Ö·û´®Á½¶ËÖØ¸´×Ö·û:TRIM(Á½±ß¶¼È¥³ý),LTRIM(×óÈ¥³ý),RTRIM(ÓÒÈ¥³ý)
+*/
+SELECT TRIM('e'FROM'eeeeeliteeee')FROM dual;
+SELECT LTRIM('eeeeliteeee','e')FROM dual;
+/*
+  ²¹Î»º¯Êý
+  LPAD(×ó²¹Î»),RPAD(ÓÒ²¹Î»)
+  LPAD(c1,n,c2)   :c1±íÊ¾ÐèÒª²¹Î»µÄ×Ö·û´®,n±íÊ¾ÒªÏÔÊ¾µÄ³¤¶È,
+                    c2±íÊ¾Òª²¹µÄ×Ö·û,³¤¶È²»×ãÔò²¹c2,¶àÔò´Ó×óÍùÓÒ½ØÈ¡
+*/
+SELECT ename,LPAD(sal,3,'$') FROM emp_l;
+/*
+  ½ØÈ¡×Ö·û´®
+  SUBSTR(c,n,m)   :c±íÊ¾Òª½ØÈ¡µÄ×Ö·û´®,nÎª½ØÈ¡µÄÆðÊ¼Î»ÖÃ,mÎª½ØÈ¡¶àÉÙ,
+                    nÎª¸ºÊýÔò´Óµ¹ÊýÎ»ÖÃ¿ªÊ¼½ØÈ¡,Êý¾Ý¿âÖÐÏÂ±ê¶¼ÊÇ´Ó1¿ªÊ¼
 */
 SELECT SUBSTR('thinking in java',10,4) FROM dual;
-
 /*
-	INSTR(c1,c2[,n[m]]) : æŸ¥æ‰¾c2åœ¨c1ä¸­çš„ä½ç½®,nè¡¨ç¤ºä»Žç¬¬å‡ ä¸ªå­—ç¬¦å¼€å§‹æ£€ç´¢,mè¡¨ç¤ºç¬¬å‡ æ¬¡å‡ºçŽ°,ä¸å†™åˆ™é»˜è®¤ä¸º1
+  INSTR(c1,c2[,n[m]])   :²éÕÒc2ÔÚc1ÖÐµÄÎ»ÖÃ,n±íÊ¾´ÓµÚ¼¸¸ö×Ö·û¿ªÊ¼¼ìË÷,
+                          m±íÊ¾µÚ¼¸´Î³öÏÖ,²»Ð´ÔòÄ¬ÈÏÎª1
 */
-SELECT INSTR('thinking in java','in',3,2)FROM dual;
-
+SELECT INSTR('thinking in java','in') FROM dual;
 /*
-	ç©ºå€¼å‡½æ•°:
-	ROUND(n,m) : æˆªå–å­—ç¬¦ä¸²,nè¡¨ç¤ºéœ€è¦å››èˆäº”å…¥çš„æ•°,mè¡¨ç¤ºä¿ç•™åˆ°å°æ•°ç‚¹åŽå‡ ä½.å››èˆäº”å…¥
+  ¿ÕÖµº¯Êý:
+  ROUND(n,m)    £º½ØÈ¡×Ö·û´®£¬n±íÊ¾ÐèÒªËÄÉáÎåÈëµÄÊý£¬
+                  m±íÊ¾±£Áôµ½Ð¡Êýµãºó¼¸Î»£¬ËÄÉáÎåÈë
 */
 SELECT ROUND(45.678,2)FROM dual;
---TRUNC(n,m) :å‚æ•°æ„ä¹‰ä¸ŽROUNDç›¸åŒ,åŒºåˆ«æ˜¯æˆªå–çš„å­—ç¬¦ä¸²ä¸åšå››èˆäº”å…¥.
+--TRUNC(n,m)    :²ÎÊýÒâÒåÓëROUNDÏàÍ¬,Çø±ðÊÇ½ØÈ¡µÄ×Ö·û´®²»×öËÄÉáÎåÈë
 SELECT TRUNC(45.678,2)FROM dual;
-
 /*
-	CELL(å‘ä¸Šå–æ•´),FLOOR(å‘ä¸‹å–æ•´)
+  CEIL(ÏòÉÏÈ¡Õû),FLOOR(ÏòÏÂÈ¡Õû)
 */
-SELECT CELL(45.678)FROM dual; --å°æ•°ä½å¦‚æžœæœ‰å€¼åˆ™è¿›ä¸€.
-SELECT FLOOR(45.678)FROM dual;--å°æ•°ä½ä¸ç®¡æœ‰æ²¡æœ‰å€¼,éƒ½èˆæŽ‰.
-
+SELECT CEIL(45.378)FROM dual;--Ð¡ÊýÎ»Èç¹ûÓÐÖµÔòÕûÊýÎ»½ø1
+SELECT FLOOR(45.678)FROM dual;--Ð¡ÊýÎ»²»¹ÜÓÐÃ»ÓÐÖµ,¶¼Éáµô
 /*
-	æ—¥æœŸç›¸å…³å…³é”®å­—:oracleå†…éƒ¨äº‹ä»¶å‡½æ•°,ç²¾ç¡®åˆ°ç§’
-	SYSDATE :å½“å‰ç³»ç»Ÿæ—¶é—´ï¼Œè¿”å›žDATEç±»åž‹æ‘©å°”æ©æ˜¾ç¤ºä¸ºæ—¥æœˆå¹´æ ¼å¼
-	SYSTIMESTAMP :å½“å‰ç³»ç»Ÿæ—¶é—´,è¿”å›žæ—¶é—´æˆ³ç±»åž‹;
+  ÈÕÆÚÏà¹Ø¹Ø¼ü×Ö:oracleÄÚ²¿Ê±¼äº¯Êý,¾«È·µ½Ãë
+  SYSDATE:µ±Ç°ÏµÍ³Ê±¼ä,·µ»ØDATEÀàÐÍÄ¬ÈÏÏÔÊ¾ÎªÈÕÔÂÄê¸ñÊ½
+  SYSTIMESTAMP:µ±Ç°ÏµÍ³Ê±¼ä,·µ»ØÊ±¼ä´ÁÀàÐÍ
 */
 SELECT SYSDATE FROM dual;
 SELECT SYSTIMESTAMP FROM dual;
-
 /*
-	æ—¥æœŸè½¬æ¢å‡½æ•°:
-	TO_DATE() :å°†å­—ç¬¦ä¸²æŒ‰ç…§æŒ‡å®šæ—¥æœŸæ ¼å¼è½¬æ¢ä¸ºDATEç±»åž‹æ•°æ®
+  ÈÕÆÚ×ª»»º¯Êý:
+  TO_DATE():½«×Ö·û´®°´ÕÕÖ¸¶¨ÈÕÆÚ¸ñÊ½×ª»»ÎªDATEÀàÐÍÊý¾Ý
 */
 SELECT TO_DATE('2008-08-08 08:08:08','YYYY-MM-DD HH24:MI:SS')FROM dual;
-
---DATEç±»åž‹æ•°æ®å¯ä»¥è¿›è¡Œè®¡ç®—,ä¸¤ä¸ªDATEç±»åž‹ç›¸å‡,å·®ç­‰äºŽç›¸å·®çš„å¤©æ•°,åŠ å‡æ•°å­—ç­‰äºŽåŠ å‡å¤©æ•°
---ä¾‹å¦‚æŸ¥çœ‹æ˜Žå¤©æ˜¯å“ªå¤©:
-SELECT SYSDATE+1 FROM dual;
---æŸ¥çœ‹æ¯ä¸ªå‘˜å·¥å…¥èŒåˆ°å°½å¤´ä¸€å…±å¤šå°‘å¤©
-SELECT ename,SYSDATE-hiredate FROM employee;
-
+--DATEÀàÐÍÊý¾Ý¿ÉÒÔ½øÐÐ¼ÆËã,Á½¸öDATEÀàÐÍÏà¼õ,²îµÈÓÚÏà²îµÄÌìÊý,
+--¼Ó¼õÊý×ÖµÈÓÚ¼Ó¼õÌìÊý
+SELECT SYSDATE+1 FROM dual;--²é¿´Ã÷ÌìÊÇÄÄÌì
+--²é¿´Ã¿¸öÔ±¹¤ÈëÖ°µ½½ñÌìÒ»¹²¶àÉÙÌì
+SELECT ename,SYSDATE-hiredate FROM emp_l;
 /*
-	TO_CHAR():å°†æ—¥æœŸè½¬æ¢ä¸ºå­—ç¬¦ä¸²
+  TO_CHAR():½«ÈÕÆÚ×ª»»Îª×Ö·û´®
 */
---æŒ‰ç…§è‡ªå·±å®šä¹‰çš„æ ¼å¼æŸ¥çœ‹å½“å‰ç³»ç»Ÿæ—¶é—´
-SELECT TO_CHAR('SYSDATE','YYYY-MM-DD HH24:MI:SS') FROM dual;
-
+--°´ÕÕ×Ô¼º¶¨ÒåµÄ¸ñÊ½²é¿´µ±Ç°ÏµÍ³Ê±¼ä
+SELECT TO_CHAR(SYSDATE,'YYYY-MM-DD HH24:MI:SS') FROM dual;
 /*
-	æ—¥æœŸæ ¼å¼ä¸­RR,YYçš„åŒºåˆ«
-	RR,YYéƒ½æ˜¯ç”¨ä¸¤ä½æ•°å­—è¡¨ç¤ºå¹´
-	ä½¿ç”¨TO_DATE()å‡½æ•°æ—¶,å¯¹ä¸–çºªå¤„ç†æ–¹å¼ä¸åŒ
-	YYæ˜¯æ ¹æ®å½“å‰ç³»ç»Ÿæ‰€åœ¨æ—¶é—´è¿›è¡Œè§£é‡Šä¸–çºªçš„
-	RRæ˜¯æ ¹æ®å…·ä½“æƒ…å†µåˆ¤å®š
+  ÈÕÆÚ¸ñÊ½ÖÐRR,YYµÄÇø±ð
+  RR,YY¶¼ÊÇÓÃÁ½Î»Êý×Ö±íÊ¾Äê.
+  Ê¹ÓÃTO_DATE()º¯ÊýÊ±,¶ÔÊÀ¼Í´¦Àí·½Ê½²»Í¬
+  YYÊÇ¸ù¾Ýµ±Ç°ÏµÍ³ËùÔÚÊÀ¼Í½øÐÐ½âÊÍÊÀ¼ÍµÄ
+  RRÊÇ¸ù¾Ý¾ßÌåÇé¿öÅÐ¶¨
 */
 SELECT TO_CHAR(TO_DATE('99-09-09','YY-MM-DD'),'YYYY-MM-DD')FROM dual;
 SELECT TO_CHAR(TO_DATE('99-09-09','RR-MM-DD'),'YYYY-MM-DD')FROM dual;
-
 /*
-	æ—¥æœŸå¸¸ç”¨å‡½æ•°:
-	LAST_DAY(date):è¿”å›žç»™å®šæ—¥æœŸæ‰€åœ¨æœˆçš„æœˆåº•
+  ÈÕÆÚ³£ÓÃº¯Êý:
+  LAST_DAY(date);·µ»Ø¸ø¶¨ÈÕÆÚËùÔÚÔÂµÄÔÂµ×
 */
-SELECT LAST_DAY(SYSDATE)FROM dual;
---ADD_MONTHS(date,i) :å¯¹ç»™å®šæ—¥æœŸåŠ æŒ‡å®šæœˆ,iä¸ºåŠ å‡ ä¸ªæœˆ,è‹¥ä¸ºè´Ÿæ•°åˆ™å‡
+SELECT LAST_DAY(SYSDATE) FROM dual;
+--ADD_MONTHS(date,i)    :¶Ô¸ø¶¨ÈÕÆÚ¼ÓÖ¸¶¨ÔÂ,iÎª¼Ó¼¸¸öÔÂ,ÈôÎª¸ºÊýÔò¼õ
 SELECT ADD_MONTHS(SYSDATE,2)FROM dual;
---MONTHS_BETWEEN(date1,date2) :è®¡ç®—ä¸¤ä¸ªæ—¥æœŸä¹‹é—´ç›¸å·®çš„æœˆ
---ä¾‹å¦‚æŸ¥çœ‹æ¯ä¸ªå‘˜å·¥å…¥èŒåˆ°ä»Šå¤©å…±å¤šå°‘ä¸ªæœˆ
-SELECT ename,MONTHS_BETWEEN(SYSDATE,hirdate) FROM employee;	
---NEXT_DAY(date,i) :è¿”å›žè·Ÿå®šæ—¥æœŸç¬¬äºŒå¤©å¼€å§‹ä¸€å‘¨ä¹‹å†…çš„æŒ‡å®šå‘¨å‡ æ—¥æœŸ
-
+--MONTHS_BETWEEN(date1,date2)   :¼ÆËãÁ½¸öÈÕÆÚÖ®¼äÏà²îµÄÔÂ
+--²é¿´Ã¿¸öÔ±¹¤ÈëÖ°µ½½ñÌì¹²¶àÉÙ¸öÔÂ
+SELECT ename,MONTHS_BETWEEN(SYSDATE,hiredate) FROM emp_l;
+--NEXT_DAY(date,i)    ;·µ»Ø¸ø¶¨ÈÕÆÚµÚ¶þÌì¿ªÊ¼Ò»ÖÜÖ®ÄÚµÄÖ¸¶¨ÖÜ¼¸ÈÕÆÚ
+SELECT NEXT_DAY(SYSDATE,2) FROM dual;--ÏÂÖÜÒ»µÄÈÕÆÚ
 /*
-	GREATEST:æœ€å¤§å€¼
-	LEAST:æœ€å°å€¼
+  GREATEST:×î´óÖµ
+  LEAST:×îÐ¡Öµ
 */
-SELECT LEAST(SYSDATE,TO_DATE('2008-08-08','YYYY-MM-DD'))FROM dual;   --æŸ¥çœ‹ç»™å®šæ—¥æœŸçš„æœ€å°å€¼
-
+--²é¿´¸ø¶¨ÈÕÆÚµÄ×îÐ¡Öµ
+SELECT LEAST(SYSDATE,TO_DATE('2008-08-08','YYYY-MM-DD'))FROM dual;
 /*
-	EXTRACT :æå–æŒ‡å®šæ—¥æœŸæ—¶é—´åˆ†é‡çš„å€¼
+  EXTRACT:ÌáÈ¡Ö¸¶¨ÈÕÆÚÊ±¼ä·ÖÁ¿µÄÖµ
 */
-SELECT EXTRACT(YEAR FROM SYSDATE)FROM dual;--æŸ¥çœ‹ä»Šå¤©æ‰€åœ¨æ—¥æœŸå¯¹åº”çš„å¹´
-
-
+SELECT EXTRACT(YEAR FROM SYSDATE) FROM dual;--²é¿´½ñÌìËùÔÚÈÕÆÚ¶ÔÓ¦µÄÄê
+/*
+  ²åÈëNULLÖµ
+*/
 CREATE TABLE student(
-	id NUMBER(4),
-	name VARCHAR2(20),
-	gender CHAR(1)
+  id NUMBER(4),
+  name VARCHAR2(20),
+  gender CHAR(1)
 );
-INSERT INTO student VALUES(1001,'å”åƒ§','M');
-INSERT INTO student VALUES(1002,'æ‚Ÿç©º',null); --æ˜¾ç¤ºæ’å…¥NULLå€¼
-INSERT INTO student (ID,NAME)VALUES(1003,'å…«æˆ’'); --éšç¤ºæ’å…¥NULLå€¼
-
---æ›´æ–°æˆä¸ºNULLå€¼
-UPDATE student SET gender=NULL WHERE id=1001;
-
+INSERT INTO student VALUES(1001,'ÌÆÉ®','M');
+INSERT INTO student VALUES(1002,'Îò¿Õ',NULL);--ÏÔÊ¾²åÈëNULLÖµ
+INSERT INTO student(id,name)VALUES(1003,'°Ë½ä');--ÒþÊ¾²åÈëNULLÖµ
+SELECT * FROM student;
+--¸üÐÂ³ÉÎªNULLÖµ
+UPDATE student SET gender=NULL WHERE id=1001; 
 /*
-	è¿‡æ»¤æ¡ä»¶åˆ¤æ–­NULLå€¼
-	åˆ¤æ–­NULLè¦ä½¿ç”¨IS NULLæˆ–IS NOT NULL;
-	NULLä¸Žæ•°å­—è¿ç®—ç»“æžœè¿˜æ˜¯NULL
+  ¹ýÂËÌõ¼þÅÐ¶ÏNULLÖµ
+  ÅÐ¶ÏNULLÒªÊ¹ÓÃIS NULL»òIS NOT NULL
 */
-SELECT ename,||NULL FROM emp;
-SELECT ename,sal+comm FROM employee;
-
+DELETE FROM student WHERE gender IS NULL;
 /*
-	ç©ºå€¼å‡½æ•°:
-	NVL(a1,a2) :a1ä¸ºNULLæ—¶,è¿”å›ža2çš„å€¼,a1ä¸ä¸ºNULLæ—¶æ²¡è¿”å›ža1æœ¬èº«,æ„ä¹‰åœ¨äºŽå°†NULLå€¼æ›¿æ¢ä¸ºéžNULLå€¼.
+  NULLµÄÔËËã
+  NULLÓë×Ö·û´®Á¬½ÓµÈÓÚÊ²Ã´Ò²Ã»¸É
+  NULLÓëÊý×ÖÔËËã½á¹û»¹ÊÇNULL
 */
---æŸ¥çœ‹æ¯ä¸ªå‘˜å·¥çš„å·¥èµ„(åº•è–ª+ç»©æ•ˆ)
-SELECT ename,sal,comm,sla+NVL(comm,0) FROM employee;
---NVL2(a1,a2,a3) :a1ä¸ºNULLæ—¶,è¿”å›ža3çš„å€¼,a1ä¸ä¸ºNULLæ—¶,è¿”å›ža2.
-
+SELECT * FROM emp_l;
+SELECT ename||NULL FROM emp;
+SELECT ename,sal+comm FROM emp_l;
 /*
-	ç»™å­—æ®µèµ·åˆ«å:ç»™å­—æ®µæˆ–è€…è¡¨è¾¾å¼æ¢æˆä¸€ä¸ªæ–°çš„åå­—(è¯»èµ·æ¥æ˜¾ç¤ºæ–¹ä¾¿)
+  ¿ÕÖµº¯Êý;
+  NVL(a1,a2)  :a1ÎªNULLÊ±.·µ»Øa2µÄÖµ,a1²»ÎªNULLÊ±,·µ»Øa1±¾Éí,
+                ÒâÒåÔÚÓÚ½«NULLÖµÌæ»»Îª·ÇNULLÖµ
 */
-SELECT ename AS name FROM employee;
-SELECT ename name FROM employee;
-SELECT ename name,salary+comm 'sal' FROM employee;
-
+--²é¿´Ã¿¸öÔ±¹¤µÄ¹¤×Ê(µ×Ð½+¼¨Ð§)
+SELECT ename,sal,comm,sal+NVL(comm,0) FROM emp_l;
+--NVL2(a1,a2,a3)  :a1ÎªNULLÊ±,·µ»Øa3µÄÖµ,a1²»ÎªNULLÊ±,·µ»Øa2
+SELECT ename,sal,comm,NVL2(comm,'ÓÐ¼¨Ð§','Ã»ÓÐ¼¨Ð§') FROM emp_l;
+SELECT ename,sal,comm,NVL2(comm,sal+comm,sal) FROM emp_l;
 /*
-	æŸ¥è¯¢ä½¿ç”¨: >,<,<=,>=,!=,<>,=
-	è¿žæŽ¥å¤šä¸ªæ¡ä»¶ä½¿ç”¨ANDæˆ–OR,ANDçš„ä¼˜å…ˆçº§é«˜äºŽOR 
+  ×Ö¶Î±ðÃû:¸ø×Ö¶Î»òÕß±í´ïÊ½»»³ÉÒ»¸öÐÂµÄÃû×Ö(¶ÁÆðÀ´ÏÔÊ¾·½±ã)
+*/
+SELECT ename AS name FROM emp_l;
+SELECT ename name FROM emp_l;
+SELECT ename name,sal+comm "sal" FROM emp_l;
+/*
+  ²éÑ¯Ê¹ÓÃ:>,<,<=,>=,!=,<>,=
+  Á¬½Ó¶à¸öÌõ¼þÊ¹ÓÃAND»òOR,ANDµÄÓÅÏÈ¼¶¸ßÓÚOR,¿ÉÒÔÍ¨¹ýÀ¨ºÅÀ´ÌáÉýÓÅÏÈ¼¶
 */
 /*
-  IN(list),NOT IN(list):åˆ¤æ–­åœ¨è¡¨ä¸­æˆ–ä¸åœ¨è¡¨ä¸­(é€šå¸¸ç”¨åœ¨å­æŸ¥è¯¢ä¸­)
+  IN(list),NOT IN(list):ÅÐ¶ÏÔÚ±íÖÐ»ò²»ÔÚ±íÖÐ(Í¨³£ÓÃÔÚ×Ó²éÑ¯ÖÐ)
 */
---æŸ¥çœ‹èŒä½æ˜¯'SALESMAN','CLERK'çš„å‘˜å·¥ä¿¡æ¯
+--²é¿´Ö°Î»ÊÇ'SALESMAN','CLERK'µÄÔ±¹¤ÐÅÏ¢
 SELECT ename,sal,job FROM emp_l WHERE job IN('SALESMAN','CLERK');
---æŸ¥çœ‹ä¸åœ¨10å·,20å·éƒ¨é—¨çš„å‘˜å·¥ä¿¡æ¯
+--²é¿´²»ÔÚ10ºÅ,20ºÅ²¿ÃÅµÄÔ±¹¤ÐÅÏ¢
 SELECT ename,sal,deptno FROM emp_l WHERE deptno NOT IN(10,20);
 /*
-  LIKE(æ¨¡ç³ŠæŸ¥è¯¢)
-  BETWEEN...AND...(åœ¨...ä¹‹é—´)
-  DISTINCT(åŽ»é‡)
-  ORDER BY(æŽ’åº):DESC(é™åº),ASC(å‡åº)
-  èšåˆå‡½æ•°(å¤šè¡Œå‡½æ•°):MAX,MIN,AVG,SUM,COUNT(*)
-  GROUP BY(åˆ†ç»„)
-  HAVING(è¿‡æ»¤)
+  LIKE(Ä£ºý²éÑ¯)
+  BETWEEN...AND...(ÔÚ...Ö®¼ä)
+  DISTINCT(È¥ÖØ)
+  ORDER BY(ÅÅÐò):DESC(½µÐò),ASC(ÉýÐò)
+  ¾ÛºÏº¯Êý(¶àÐÐº¯Êý):MAX,MIN,AVG,SUM,COUNT(*)
+  GROUP BY(·Ö×é)
+  HAVING(¹ýÂË)
 */
-
---æŸ¥çœ‹åå­—ä¸­ç¬¬äºŒä¸ªå­—æ¯ä¸º'L',æœ€åŽä¸€ä¸ªå­—æ¯ä¸º'N'çš„å‘˜å·¥ä¿¡æ¯
+--²é¿´Ãû×ÖÖÐµÚ¶þ¸ö×ÖÄ¸Îª'L',×îºóÒ»¸ö×ÖÄ¸Îª'N'µÄÔ±¹¤ÐÅÏ¢
 SELECT ename,sal FROM emp_l WHERE ename LIKE '_L%N';
---æŸ¥è¯¢å·¥èµ„åœ¨1500-3000ä¹‹é—´çš„å‘˜å·¥
+--²éÑ¯¹¤×ÊÔÚ1500-3000Ö®¼äµÄÔ±¹¤
 SELECT ename,sal FROM emp_l WHERE sal BETWEEN 1500 AND 3000;
---åŽ»é™¤è¡¨ä¸­é‡å¤çš„éƒ¨é—¨å·
+--È¥³ý±íÖÐÖØ¸´µÄ²¿ÃÅºÅ
 SELECT DISTINCT deptno FROM emp_l;
---æŸ¥è¯¢20å·éƒ¨é—¨å‘˜å·¥ä¿¡æ¯å·¥èµ„æŒ‰ç…§é™åºæŽ’åˆ—
+--²éÑ¯20ºÅ²¿ÃÅÔ±¹¤ÐÅÏ¢¹¤×Ê°´ÕÕ½µÐòÅÅÁÐ
 SELECT * FROM emp_l WHERE deptno=20 ORDER BY sal DESC;
---æŸ¥çœ‹å…¬å¸çš„å‘˜å·¥æ•°
+--²é¿´¹«Ë¾µÄÔ±¹¤Êý
 SELECT COUNT(*) FROM emp_l;
---æŸ¥çœ‹åŒéƒ¨é—¨åŒèŒä½çš„å‘˜å·¥å„å¤šå°‘äºº
+--²é¿´Í¬²¿ÃÅÍ¬Ö°Î»µÄÔ±¹¤¸÷¶àÉÙÈË
 SELECT deptno,job,COUNT(*) FROM emp_l GROUP BY deptno,job;
---æŸ¥çœ‹å¹³å‡å·¥èµ„é«˜äºŽ2000çš„é‚£äº›éƒ¨é—¨çš„æœ€é«˜å·¥èµ„æ˜¯å¤šå°‘
+--²é¿´Æ½¾ù¹¤×Ê¸ßÓÚ2000µÄÄÇÐ©²¿ÃÅµÄ×î¸ß¹¤×ÊÊÇ¶àÉÙ
 SELECT deptno,MAX(sal) FROM emp_l GROUP BY deptno HAVING AVG(sal)>2000;
 /*
-  å…³è”æŸ¥è¯¢:å¤šå¼ è¡¨è”åˆæŸ¥è¯¢è®°å½•(ç»“æžœé›†ä¸­çš„å­—æ®µå¯èƒ½æ¥è‡ªäºŽå¤šå¼ è¡¨)
-  å…³é”®ç‚¹åœ¨äºŽè¿žæŽ¥æ¡ä»¶,æ•°æ®åº“æ˜¯æ ¹æ®è¿™äº›è¿žæŽ¥æ¡ä»¶æ‰¾åˆ°è¡¨ä¹‹é—´çš„å¯¹åº”å…³ç³»,
-  ä»Žè€Œä»Žè¿™äº›å­—æ®µä¸­èŽ·å–è¦æŸ¥è¯¢çš„å­—æ®µæ¥æž„æˆç»“æžœé›†ä¸­çš„å„ä¸ªå­—æ®µ
+  ¹ØÁª²éÑ¯:¶àÕÅ±íÁªºÏ²éÑ¯¼ÇÂ¼(½á¹û¼¯ÖÐµÄ×Ö¶Î¿ÉÄÜÀ´×ÔÓÚ¶àÕÅ±í)
+  ¹Ø¼üµãÔÚÓÚÁ¬½ÓÌõ¼þ,Êý¾Ý¿âÊÇ¸ù¾ÝÕâÐ©Á¬½ÓÌõ¼þÕÒµ½±íÖ®¼äµÄ¶ÔÓ¦¹ØÏµ,
+  ´Ó¶ø´ÓÕâÐ©×Ö¶ÎÖÐ»ñÈ¡Òª²éÑ¯µÄ×Ö¶ÎÀ´¹¹³É½á¹û¼¯ÖÐµÄ¸÷¸ö×Ö¶Î
 */
---è¡¨æ·»åŠ åˆ«å,é€šè¿‡åˆ«å.å­—æ®µåçš„å½¢å¼æ ‡æ³¨,å¯ä»¥é™ä½Žç¼–å†™SQLè¯­å¥çš„å¤æ‚åº¦,å¢žåŠ å¯è¯»æ€§
---æŸ¥çœ‹æ¯ä¸ªå‘˜å·¥çš„åå­—ä»¥åŠæ‰€åœ¨éƒ¨é—¨çš„åå­—
+--±íÌí¼Ó±ðÃû,Í¨¹ý±ðÃû.×Ö¶ÎÃûµÄÐÎÊ½±ê×¢,¿ÉÒÔ½µµÍ±àÐ´SQLÓï¾äµÄ¸´ÔÓ¶È,Ôö¼Ó¿É¶ÁÐÔ
+--²é¿´Ã¿¸öÔ±¹¤µÄÃû×ÖÒÔ¼°ËùÔÚ²¿ÃÅµÄÃû×Ö
 SELECT e.ename,e.deptno,d.dname 
 FROM emp_l e,dept_l d 
 WHERE e.deptno=d.deptno;
---æŸ¥çœ‹éƒ¨é—¨å·ä¸€æ ·å¹¶ä¸”åœ¨çº½çº¦çš„å‘˜å·¥
+--²é¿´²¿ÃÅºÅÒ»Ñù²¢ÇÒÔÚÅ¦Ô¼µÄÔ±¹¤
 SELECT e.ename,e.deptno,d.loc 
 FROM emp_l e,dept_l d 
 WHERE e.deptno=d.deptno 
 AND d.loc='NEW YORK';
-/* è¿ªå°”å¡ç§¯:ä¸æŒ‡å®šå…³è”æ¡ä»¶ä¼šäº§ç”Ÿç¬›å¡å°”ç§¯,ä¸€ä¸ªæ— æ„ä¹‰çš„ç»“æžœé›†*/
 /*
-	å†…è¿žæŽ¥:JOIN...ON...ä¸æ»¡è¶³è¿žæŽ¥æ¡ä»¶çš„è®°å½•ä¸ä¼šè¢«æŸ¥è¯¢å‡ºæ¥
+  µÑ¿¨¶û»ý:²»Ö¸¶¨¹ØÁªÌõ¼þ»á²úÉúµÑ¿¨¶û»ý,Ò»¸öÎÞÒâÒåµÄ½á¹û¼¯
 */
---æŸ¥è¯¢åœ¨çº½çº¦å·¥ä½œéƒ¨é—¨å·ä¸€æ ·çš„å‘˜å·¥å§“å
+/*
+  ÄÚÁ¬½Ó:JOIN...ON...²»Âú×ãÁ¬½ÓÌõ¼þµÄ¼ÇÂ¼²»»á±»²éÑ¯³öÀ´
+*/
+--²éÑ¯ÔÚÅ¦Ô¼¹¤×÷²¿ÃÅºÅÒ»ÑùµÄÔ±¹¤ÐÕÃû
 SELECT e.ename,e.deptno,d.loc 
 FROM emp_l e JOIN dept_l d 
 ON e.deptno=d.deptno 
 AND d.loc='NEW YORK';
-
-
 /*
-	å¤–è¿žæŽ¥:é™¤äº†å¯ä»¥å°†æ»¡è¶³è¿žæŽ¥æ¡ä»¶çš„è®°å½•æŸ¥è¯¢å‡ºæ¥ä¹‹å¤–,è¿˜å¯ä»¥å°†ä¸æ»¡è¶³æ¡ä»¶çš„è®°å½•æŸ¥è¯¢å‡ºæ¥.
-	å¤–è¿žæŽ¥æœ‰ä¸‰ç§:å·¦å¤–è¿žæŽ¥,å³å¤–è¿žæŽ¥,å…¨å¤–é“¾æŽ¥
-	å·¦å¤–è¿žæŽ¥:ä»¥JOINå·¦ä¾§è¡¨ä½œä¸ºé©±åŠ¨è¡¨,è¯¥è¡¨ä¸­çš„æ‰€æœ‰è®°å½•éƒ½ä¼šæŸ¥è¯¢å‡ºæ¥,
-	å½“æŸæ¡è®°å½•ä¸æ»¡è¶³è¿žæŽ¥æ¡ä»¶æ—¶,ç»“æžœé›†ä¸­æ¥è‡ªJOINå³ä¾§è¡¨å­—æ®µçš„å…¨éƒ¨ä¸ºNULL
+  ÍâÁ¬½Ó:³ýÁË¿ÉÒÔ½«Âú×ãÁ¬½ÓÌõ¼þµÄ¼ÇÂ¼²éÑ¯³öÀ´Ö®Íâ,
+          »¹¿ÉÒÔ½«²»Âú×ãÌõ¼þµÄ¼ÇÂ¼²éÑ¯³öÀ´
+  ÍâÁ¬½ÓÓÐÈýÖÖ:×óÍâÁ¬½Ó,ÓÒÍâÁ¬½Ó,È«ÍâÁ¬½Ó
+  ×óÍâÁ¬½Ó:ÒÔJOIN×ó²à±í×÷ÎªÇý¶¯±í,¸Ã±íÖÐµÄËùÓÐ¼ÇÂ¼¶¼»á²éÑ¯³öÀ´,
+          µ±Ä³Ìõ¼ÇÂ¼²»Âú×ãÁ¬½ÓÌõ¼þÊ±,½á¹û¼¯ÖÐÀ´×ÔJOINÓÒ²à±í×Ö¶ÎµÄÈ«²¿ÎªNULL
 */
---æŸ¥è¯¢å‘˜å·¥è¡¨ä¸Žéƒ¨é—¨è¡¨éƒ¨é—¨å·ä¸€æ ·çš„å‘˜å·¥
+--²éÑ¯Ô±¹¤±íÓë²¿ÃÅ±í²¿ÃÅºÅÒ»ÑùµÄÔ±¹¤
 SELECT e.ename,e.deptno,d.dname,d.deptno 
 FROM emp_l e 
 LEFT OUTER JOIN dept_l d 
@@ -283,18 +282,112 @@ SELECT e.ename,e.deptno,d.dname,d.deptno
 FROM emp_l e 
 RIGHT OUTER JOIN dept_l d 
 ON e.deptno=d.deptno;
-
-
-2018å¹´6æœˆ5æ—¥ ç¬”è®°:
-
 /*
-	DECODE:(expr,searoh1,result1,[searoh2,result2.....][,default]): æ¯”è¾ƒå‚æ•°,è¿”å›žå¯¹åº”çš„ç»“æžœ.
-	expr: éœ€è¦æ¯”è¾ƒçš„å‚æ•°
-	search1:
-	
+  EXISTS:ÓÃÔÚ¹ýÂËÌõ¼þÖÐ,ºó¸úÒ»¸ö×Ó²éÑ¯,Ö»Òª¸Ã×Ó²éÑ¯¿ÉÒÔ²éÑ¯³öÒ»Ìõ¼ÇÂ¼,
+  ÄÇÃ´EXISTS¾ÍÈÏÎªÂú×ãÌõ¼þ
 */
+--²é¿´ÓÐÔ±¹¤µÄ²¿ÃÅÐÅÏ¢
+select e.ename,e.deptno from emp_l e where EXISTS 
+(select * from emp_l e join dept_l d on e.deptno=d.deptno);
+/*
+  ·ÖÒ³²éÑ¯:(·½ÑÔ,Ã¿ÖÖÊÇÊý¾Ý¿â²éÑ¯¶¼²»Ò»Ñù):
+  ½«Ò»¸ö²éÑ¯Óï¾äµÄÊý¾Ý·ÖÅú·Ö¶ÎÏÔÊ¾
+  ºÃ´¦:µ±Ò»¸ö²éÑ¯Óï¾ä²éÑ¯½á¹û¼¯·Ç³£´óÊ±,¼õÉÙÍøÂç´«ÊäÊý¾ÝÁ¿,Ìá¸ßÏìÓ¦ËÙ¶È,
+  ½µµÍÏµÍ³¿ªÏú
+  ROWNUM(Î±ÁÐ):²»´æÔÚÈÎºÎ±íÖÐ,µ«<Ã¿ÕÅ±í¶¼ÄÜÊ¹ÓÃ>¶¼¿ÉÒÔ²éÑ¯³ö¸Ã×Ö¶Î,
+  ¸Ã×Ö¶ÎµÄÖµÎª²éÑ¯µÄ½á¹û¼¯ÖÐÃ¿Ìõ¼ÇÂ¼µÄÐÐºÅ
+  ¸Ã×Ö¶ÎµÄÖµ°éËæ²éÑ¯¹ý³Ì¶¯Ì¬Éú³É£¬Ö»Òª¿ÉÒÔ´Ó±íÖÐ²éÑ¯³öÒ»Ìõ¼ÇÂ¼£¬
+  ×Ö¶ÎµÄÖµÊÇ¼ÇÂ¼ÔÚµ±Ç°½á¹û¼¯ÖÐµÄÐÐºÅ´Ó1¿ªÊ¼µÝÔö¡£
+  ²éÑ¯·¶Î§£º
+  PageSize£ºÃ¿Ò³ÏÔÊ¾µÄÌõÄ¿Êý¡£
+  Page£ºÒªÏÔÊ¾µÄÒ³Êý
+  Strat£º£¨page-1£©*pagesize+1
+  end£ºpagesize*page
+*/
+--²é¿´6-10ÐÐµÄ¼ÇÂ¼
+select * from
+(select rownum rn,ename,job,sal,deptno from emp_l) 
+where rn between 6 and 10; 
 
---ç»™å„ä¸ªç¬¦åˆç›¸åº”èŒä½çš„æ¶¨å·¥èµ„
-SELECT ename,salary,job,
-DECODE(JOB,'SALESMAN',sal*1.5,'CLERK',sal*2,'MANAGER',sal*2.5,sal) 
-FROM emp_l;
+--²é¿´¹«Ë¾¹¤×ÊµÄÅÅÃû6-10
+select * from 
+(select rownum rn,t.* from
+(select ename,job,sal,deptno from emp_l order by sal desc)t 
+where rownum<=10) 
+where rn >=6;
+/*
+  Ö÷¼ü:·Ç¿ÕÇÒÎ¨Ò»
+*/
+create table employee(
+  id number(4) primary key,
+  name varchar2(20),
+  gender char(2),
+  sal number(4)
+);
+insert into employee values(1,'Ð¡Ã÷','M',4000);
+select * from employee;
+create sequence seq_emp_id;
+insert into employee values(seq_emp_id.nextval,'Ð¡Ã÷','M',4000);
+drop sequence seq_emp_id;
+drop table employee;
+select seq_emp_id.nextval from dual;
+
+
+create table employee1(
+  id number(4),
+  name varchar2(20),
+  gender char(2),
+  sal number(4)
+);
+desc employee1;
+alter table employee add constraint employee_id_pk primary key(id);
+
+
+
+
+
+
+
+
+
+
+
+--DCL:Êý¾Ý¿ØÖÆÓïÑÔ(Êý¾Ý¿â¹ÜÀíÔ±)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
