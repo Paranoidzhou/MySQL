@@ -42,7 +42,7 @@
 	//5.执行sql语句:
 	statement.execute(sql);
 	System.out.println("创建成功");
-```
+``` 
 
 ##### execute:
 - 此方法可以执行任意sql,返回值true代表有结果集(查询语句时会有结果集),false为没有结果集.通常情况下execute方法用于执行DDL(数据定义语言);

@@ -34,7 +34,7 @@ DataBaseManagementSystem：数据库管理系统，管理数据库文件的软�
 
 ## 常见数据库介绍：
 
-- MySQL：08年被Sun公司收购，09年Sun公司被Oracle收购，开源。被Oracle收购后出了5.5版本由于使用了Oracle核心技术，性能有了大幅提高，导致Oracle用户流失，公司决定将MySQL闭源。导致MySQL程序员离开并创建了MariaDB。 
+- MySQL：08年被Sun公司收购，09年Sun公司被Oracle收购，开源。被Oracle收购后出了5.5版本由于使用了Oracle核心技术，性能有了大幅提高，导致Oracle用户流失，公司决定将MySQL闭源。导致MySQL程序员离开并创建了MariaDB（出于某种原因，最终还是开源）
 
   > 市场占用最高
 
